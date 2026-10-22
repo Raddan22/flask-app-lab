@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
-users_bp = Blueprint('users', __name__, url_prefix='/users')
+users_bp = Blueprint('users', __name__,template_folder="templates/users", url_prefix='/users')
 
 @users_bp.route('/hi/<string:name>')
 def greetings(name):
