@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Flask App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav style="margin-bottom: 20px; padding: 10px; background: #eee;">
+        <a href="/">Резюме</a> |
+        <a href="/contacts">Контакти</a> |
+        <a href="/homepage">Homepage (Lab 3)</a> |
+        <a href="/users/hi/John">Users</a> |
+        <a href="/products/">Products</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #333;
+}
+nav a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
+}
