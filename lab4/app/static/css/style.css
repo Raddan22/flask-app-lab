@@ -1,0 +1,71 @@
+/* =========================================
+   1. ЗМІННІ ДЛЯ СВІТЛОЇ ТЕМИ (за замовчуванням)
+   ========================================= */
+   :root {
+    --bg: #f4f7f6;
+    --text: #2c3e50;
+    --card-bg: #ffffff;
+    --border: #e0e0e0;
+}
+
+/* =========================================
+   2. ЗМІННІ ДЛЯ ТЕМНОЇ ТЕМИ
+   ========================================= */
+body.dark-theme {
+    --bg: #121212 !important;
+    --text: #e0e0e0 !important;
+    --card-bg: #1e1e1e !important;
+    --border: #333333 !important;
+}
+
+/* =========================================
+   3. ЗАСТОСУВАННЯ КОЛЬОРІВ
+   ========================================= */
+body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Картки (ваші profile-card та profile-header) */
+.profile-card, .card, .container form, .bg-white {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Шапка профілю (залишаємо синьою, як у вашому дизайні) */
+.profile-header {
+    background: linear-gradient(135deg, #0d6efd, #0dcaf0) !important;
+    color: white !important;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+/* Поля вводу */
+.form-control {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* Текст, заголовки, таблиці */
+h1, h2, h3, h4, h5, h6, p, label, td, th, span {
+    color: var(--text) !important;
+}
+
+/* Таблиця в темній темі */
+body.dark-theme .table {
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+body.dark-theme .table-hover tbody tr:hover {
+    color: #ffffff !important;
+    background-color: #2c2c2c !important;
+}

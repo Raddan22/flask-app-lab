@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<h2>Інформація про ваш браузер:</h2>
+<p style="background: #f4f4f4; padding: 10px; border-radius: 5px;">
+    {{ agent }}
+</p>
+{% endblock %}
