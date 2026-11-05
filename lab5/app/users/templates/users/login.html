@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Вхід у систему{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>З поверненням!</h2>
+        <form method="POST" action="{{ url_for('users.login') }}">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="admin" required>
+                <label for="username">Ім'я користувача</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="password" class="form-control" id="password" name="password" placeholder="12345" required>
+                <label for="password">Пароль</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 fs-5">Увійти</button>
+        </form>
+        <div class="text-center mt-3">
+            <small class="text-muted">Підказка: admin / 12345</small>
+        </div>
+    </div>
+</div>
+{% endblock %}
