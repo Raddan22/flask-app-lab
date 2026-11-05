@@ -2,14 +2,38 @@
 {% block title %}Список товарів{% endblock %}
 
 {% block content %}
-<h2>Список товарів</h2>
-<ul>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Список товарів</h2>
+    <a href="{{ url_for('products.add_product_view') }}" class="btn btn-success">+ Додати товар</a>
+</div>
+
+<div class="row">
     {% for product in products %}
-        <li style="margin-bottom: 10px;">
-            <a href="{{ url_for('products.detail_product', id=product.id) }}">
-                <strong>{{ product.name }}</strong>
-            </a> - ${{ product.price }}
-        </li>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            {% if product.image %}
+                <!-- ЗМІНЕНО ТУТ: прибрано products. -->
+                <img src="{{ url_for('static', filename=product.image) }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+            {% else %}
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">Немає фото</div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text text-muted small">{{ product.category }}</p>
+                <p class="fw-bold">${{ "%.2f"|format(product.price) }}</p>
+                <p class="small">Кількість: {{ product.quantity }}</p>
+                <p class="text-muted" style="font-size: 0.8rem;">Додано: {{ product.created_at }}</p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="{{ url_for('products.detail_product', id=product.id) }}" class="btn btn-sm btn-outline-primary">Деталі</a>
+                <a href="{{ url_for('products.edit_product_view', id=product.id) }}" class="btn btn-sm btn-outline-warning">Редагувати</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-info">Товарів поки немає. Додайте перший!</div>
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
