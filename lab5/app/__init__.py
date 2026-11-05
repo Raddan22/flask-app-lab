@@ -6,7 +6,7 @@ from flask import Flask
 app = Flask(__name__)
 app.secret_key = 'super-secret-key-for-lab5'
 
-# Налаштування логування
+
 if not os.path.exists('logs'):
     os.makedirs('logs')
 file_handler = RotatingFileHandler('logs/contact.log', maxBytes=10240, backupCount=10)
