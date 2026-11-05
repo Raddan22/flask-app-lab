@@ -6,7 +6,6 @@ from app.products.models import get_all_products, get_product_by_id, add_product
 
 products_bp = Blueprint('products', __name__, template_folder='templates/products', url_prefix='/products')
 
-# Зберігаємо в глобальну папку app/static/uploads/
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -58,7 +57,6 @@ def edit_product_view(id):
         
     form = ProductForm(data=product)
     
-    # Очищаємо поле файлу при GET-запиті, щоб уникнути помилки 'str' object has no attribute 'filename'
     if request.method == 'GET':
         form.image.data = None
     
@@ -71,7 +69,6 @@ def edit_product_view(id):
             'quantity': form.quantity.data,
         }
         
-        # Якщо завантажили нове зображення - зберігаємо, інакше залишаємо старе
         if form.image.data and hasattr(form.image.data, 'filename') and form.image.data.filename:
             image_path = save_image(form.image.data)
             if image_path:
