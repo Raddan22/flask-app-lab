@@ -5,7 +5,6 @@ from datetime import datetime
 # Шлях до JSON-файлу бази даних
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'data', 'products.json')
 
-# Створюємо папку data, якщо її немає
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
 db = TinyDB(DB_PATH)
