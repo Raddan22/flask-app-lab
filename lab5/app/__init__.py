@@ -6,6 +6,8 @@ from flask import Flask
 app = Flask(__name__)
 app.secret_key = 'super-secret-key-for-lab5'
 
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024 
+
 
 if not os.path.exists('logs'):
     os.makedirs('logs')
