@@ -24,7 +24,7 @@ def create_post():
             content=form.content.data,
             category=form.category.data,
             posted=form.publish_date.data,
-            is_active=form.enabled.data,
+            is_active=form.is_active.data,  # <-- ЗМІНЕНО ТУТ
             author=author
         )
         db.session.add(new_post)
@@ -42,7 +42,7 @@ def update_post(id):
         post.title = form.title.data
         post.content = form.content.data
         post.category = form.category.data
-        post.is_active = form.enabled.data
+        post.is_active = form.is_active.data  # <-- ЗМІНЕНО ТУТ
         if form.publish_date.data:
             post.posted = form.publish_date.data
         db.session.commit()

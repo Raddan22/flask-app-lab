@@ -17,13 +17,14 @@
                 {{ form.hidden_tag() }}
                 
                 {{ render_field(form.title) }}
-                {{ render_field(form.content, rows="5") }}
+                {{ render_field(form.content) }}
                 {{ render_field(form.category, class="form-select") }}
                 {{ render_field(form.publish_date) }}
                 
+                <!-- ЗМІНЕНО ТУТ: enabled -> is_active -->
                 <div class="form-check mb-4">
-                    {{ form.enabled(class="form-check-input") }}
-                    {{ form.enabled.label(class="form-check-label") }}
+                    {{ form.is_active(class="form-check-input") }}
+                    {{ form.is_active.label(class="form-check-label") }}
                 </div>
                 
                 <div class="d-grid">
