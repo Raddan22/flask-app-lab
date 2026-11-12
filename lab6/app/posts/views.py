@@ -3,14 +3,18 @@ from app.posts import post_bp
 from app.posts.models import Post
 from app.posts.forms import PostForm
 from app import db
+from sqlalchemy import select
 
 @post_bp.route('/post')
 def all_posts():
-    posts = db.session.execute(db.select(Post).where(Post.is_active == True).order_by(Post.posted.desc())).scalars().all()
+    # Сучасний синтаксис 2.0: select() + scalars()
+    stmt = select(Post).where(Post.is_active == True).order_by(Post.posted.desc())
+    posts = db.session.scalars(stmt).all()
     return render_template('posts.html', posts=posts)
 
 @post_bp.route('/post/<int:id>')
 def detail_post(id):
+    # Сучасний синтаксис: get_or_404
     post = db.get_or_404(Post, id)
     return render_template('detail_post.html', post=post)
 
@@ -24,7 +28,7 @@ def create_post():
             content=form.content.data,
             category=form.category.data,
             posted=form.publish_date.data,
-            is_active=form.is_active.data,  # <-- ЗМІНЕНО ТУТ
+            is_active=form.is_active.data,
             author=author
         )
         db.session.add(new_post)
@@ -42,7 +46,7 @@ def update_post(id):
         post.title = form.title.data
         post.content = form.content.data
         post.category = form.category.data
-        post.is_active = form.is_active.data  # <-- ЗМІНЕНО ТУТ
+        post.is_active = form.is_active.data
         if form.publish_date.data:
             post.posted = form.publish_date.data
         db.session.commit()

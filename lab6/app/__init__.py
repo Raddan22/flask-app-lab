@@ -9,7 +9,6 @@ migrate = Migrate()
 def create_app(config_name='development'):
     app = Flask(__name__)
     
-    # Конфігурація
     from app.config import DevelopmentConfig, TestingConfig, ProductionConfig
     configs = {
         'development': DevelopmentConfig,
@@ -18,33 +17,29 @@ def create_app(config_name='development'):
     }
     app.config.from_object(configs.get(config_name, DevelopmentConfig))
     
-    # Ініціалізація розширень
     db.init_app(app)
     migrate.init_app(app, db)
     
-    # ========== РЕЄСТРАЦІЯ БЛЮПРИНТІВ ==========
-    
-        # Реєстрація блюпринтів
     from app.posts import post_bp
-    from app.posts import views
+    from app.posts import views  
     app.register_blueprint(post_bp)
     
-    # Додайте це, якщо папка products існує
-    from app.products.views import products_bp
-    app.register_blueprint(products_bp)
+    try:
+        from app.users.views import users_bp
+        app.register_blueprint(users_bp)
+    except ImportError:
+        app.logger.warning("Blueprint 'users' not found. Skipping.")
     
-    # І це, якщо папка users існує
-    from app.users.views import users_bp
-    app.register_blueprint(users_bp)
+    try:
+        from app.products.views import products_bp
+        app.register_blueprint(products_bp)
+    except ImportError:
+        app.logger.warning("Blueprint 'products' not found. Skipping.")
     
-    # ============================================
-    
-    # Головна сторінка
     @app.route('/')
     def home():
         return render_template('base.html', title="Home")
     
-    # Обробник 404
     @app.errorhandler(404)
     def not_found(e):
         return render_template('404.html'), 404
