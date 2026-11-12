@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Профіль{% endblock %}
+
+{% block content %}
+<!-- ОСЬ ЦЯ ОБГОРТКА ЗМІНЮЄ ТЕМУ ТІЛЬКИ ДЛЯ ЦІЄЇ СТОРІНКИ -->
+<div class="{{ session.get('theme', 'light') }}-theme" style="min-height: 80vh;">
+    
+    <!-- Далі йде весь ваш контент профілю -->
+    <div class="profile-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="mb-1 fw-bold">Вітаємо, {{ username }}!</h2>
+                <p class="mb-0 opacity-75">Ви успішно увійшли в систему.</p>
+            </div>
+            <a href="{{ url_for('users.logout') }}" class="btn btn-light fw-bold text-danger">Вийти</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="profile-card">
+                <h5 class="mb-3">Оформлення</h5>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('users.set_theme', theme_name='light') }}" class="btn btn-outline-dark">☀️ Світла тема</a>
+                    <a href="{{ url_for('users.set_theme', theme_name='dark') }}" class="btn btn-outline-light bg-dark">🌙 Темна тема</a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h5 class="mb-3">Додати кукі</h5>
+                <form method="POST" action="{{ url_for('users.add_cookie') }}">
+                    <div class="mb-3">
+                        <input type="text" name="key" class="form-control" placeholder="Ключ (напр., user_id)" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="value" class="form-control" placeholder="Значення (напр., 1)" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Додати</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="profile-card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">Збережені кукі</h5>
+                    <a href="{{ url_for('users.delete_all_cookies') }}" class="btn btn-sm btn-outline-warning">Очистити всі</a>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Ключ</th>
+                                <th>Значення</th>
+                                <th class="text-end">Дія</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in cookies.items() %}
+                            <tr>
+                                <td class="fw-bold">{{ key }}</td>
+                                <td>{{ value }}</td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('users.delete_cookie', key=key) }}" class="btn btn-sm btn-danger">Видалити</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3" class="text-center py-4 text-muted">Кукі відсутні</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
