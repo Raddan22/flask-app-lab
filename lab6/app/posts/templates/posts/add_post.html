@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('posts.static', filename='css/posts.css') }}">
+{% endblock %}
+
 {% from 'macros/_form_macros.html' import render_field %}
+
 {% block title %}{{ 'Редагувати' if is_edit else 'Додати' }} пост{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
@@ -8,16 +15,19 @@
             <h2>{{ 'Редагувати' if is_edit else 'Додати' }} пост</h2>
             <form method="POST">
                 {{ form.hidden_tag() }}
+                
                 {{ render_field(form.title) }}
                 {{ render_field(form.content, rows="5") }}
                 {{ render_field(form.category, class="form-select") }}
                 {{ render_field(form.publish_date) }}
-                <div class="form-check mb-3">
+                
+                <div class="form-check mb-4">
                     {{ form.enabled(class="form-check-input") }}
                     {{ form.enabled.label(class="form-check-label") }}
                 </div>
+                
                 <div class="d-grid">
-                    {{ form.submit(class="btn btn-primary") }}
+                    {{ form.submit(class="btn btn-primary btn-lg") }}
                 </div>
             </form>
         </div>

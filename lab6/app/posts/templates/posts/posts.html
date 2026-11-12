@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('posts.static', filename='css/posts.css') }}">
+<link rel="stylesheet" href="{{ url_for('posts.static', filename='css/posts.css') }}">
 {% endblock %}
 
 {% block title %}Всі пости{% endblock %}
@@ -9,31 +9,31 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Всі пости</h2>
-    <a href="{{ url_for('posts.create_post') }}" class="btn btn-add-post">+ Додати пост</a>
+    <a href="{{ url_for('posts.create_post') }}" class="btn btn-primary">Додати пост</a>
 </div>
 
 <div class="row">
     {% for post in posts %}
     <div class="col-md-4 mb-4">
-        <div class="card post-card h-100">
-            <!-- Картинка за замовчуванням з блюпринта posts -->
+        <div class="card post-card h-100 shadow-sm">
+            <!-- Використовуємо default.jpg з папки img -->
             <img src="{{ url_for('posts.static', filename='img/default.jpg') }}" class="card-img-top" alt="post default">
+            
             <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">
-                    <span class="badge bg-secondary">{{ post.category }}</span>
-                    <small class="text-muted ms-2">{{ post.posted.strftime('%Y-%m-%d') }}</small>
-                </p>
+                <p class="text-muted small mb-2">{{ post.category }} | {{ post.posted.strftime('%Y-%m-%d') }}</p>
+                <!-- Обрізаємо контент до 100 символів -->
                 <p class="card-text">{{ post.content[:100] }}...</p>
             </div>
-            <div class="card-footer">
+            
+            <div class="card-footer bg-transparent">
                 <a href="{{ url_for('posts.detail_post', id=post.id) }}" class="btn btn-sm btn-outline-primary">Детальніше</a>
             </div>
         </div>
     </div>
     {% else %}
     <div class="col-12">
-        <div class="alert alert-info">Постів поки немає. Додайте перший!</div>
+        <div class="alert alert-info">Постів поки немає. Створіть перший!</div>
     </div>
     {% endfor %}
 </div>
