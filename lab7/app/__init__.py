@@ -2,8 +2,18 @@ import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy import MetaData
 
-db = SQLAlchemy()
+# Встановлюємо єдиний стиль іменування обмежень (Частина 3)
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+
+db = SQLAlchemy(metadata=MetaData(naming_convention=convention))
 migrate = Migrate()
 
 def create_app(config_name='development'):
@@ -20,6 +30,7 @@ def create_app(config_name='development'):
     db.init_app(app)
     migrate.init_app(app, db)
     
+    # Реєстрація блюпринтів
     from app.posts import post_bp
     from app.posts import views  
     app.register_blueprint(post_bp)
@@ -30,7 +41,7 @@ def create_app(config_name='development'):
     except ImportError:
         app.logger.warning("Blueprint 'users' not found. Skipping.")
     
-    # Блок products закоментовано, щоб не було попередження
+    # Блок products закоментовано (для лаби 7 він не потрібен)
     # try:
     #     from app.products.views import products_bp
     #     app.register_blueprint(products_bp)
