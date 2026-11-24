@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="about" class="mb-4">
+    <h2>Про себе</h2>
+    <p>Я навчаюся розробці вебзастосунків мовою Python. Ця сторінка демонструє використання Flask, Jinja2, Bootstrap та власних CSS-стилів.</p>
+</section>
+
+<section id="education" class="mb-4">
+    <h2>Освіта</h2>
+    <p>Карпатський національний університет імені Василя Стефаника, Інженер програмного забезпечення,3 курс 1 семестр.</p>
+</section>
+
+<section id="skills" class="mb-4">
+    <h2>Навички</h2>
+    <ul>
+        <li>Python, Flask</li>
+        <li>HTML, CSS, Bootstrap</li>
+        <li>Git, GitHub</li>
+    </ul>
+</section>
+
+<section id="technologies" class="mb-4">
+    <h2>Технології</h2>
+    <p>Flask, Jinja2, Bootstrap, SQLite (в майбутньому).</p>
+</section>
+
+<section id="projects" class="mb-4">
+    <h2>Проєкти</h2>
+    <p>Flask-додаток на Render: <a href="https://flask-app-lab-bdg1.onrender.com">демо</a></p>
+</section>
+
+<section id="photo" class="mb-4">
+    <h2>Фото</h2>
+    <img src="{{ url_for('static', filename='images/profile.png') }}" alt="Фото" width="200" class="rounded">
+</section>
+{% endblock %}

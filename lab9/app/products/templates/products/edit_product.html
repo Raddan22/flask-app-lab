@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% from '_render_field.html' import render_field %}
+{% block title %}Редагувати {{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="mb-4">Редагувати товар: {{ product.name }}</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ render_field(form.name) }}
+                    {{ render_field(form.content, rows="5") }}
+                    {{ render_field(form.price) }}
+                    {{ render_field(form.category, class="form-select") }}
+                    {{ render_field(form.quantity) }}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Зображення (залиште пустим, щоб не змінювати)</label>
+                        {{ form.image(class="form-control") }}
+                        {% if product.image %}
+                            <small class="text-muted d-block mt-2">Поточне: {{ product.image }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="d-grid mt-4">
+                        {{ form.submit(class="btn btn-primary btn-lg", value="Оновити товар") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

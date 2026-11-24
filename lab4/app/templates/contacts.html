@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="contacts" class="mb-4">
+    <h2>Контакти</h2>
+    <p>Email: oleksandr.dubetskyi.24@pnu.edu.ua</p>
+    <p>Телефон: +380 XX XXX XX XX</p>
+</section>
+
+<section id="contact-form">
+    <h2>Написати мені</h2>
+    <form>
+        <div class="mb-3">
+            <label for="name" class="form-label">Ім'я</label>
+            <input type="text" class="form-control" id="name" placeholder="Ваше ім'я">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Повідомлення</label>
+            <textarea class="form-control" id="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Надіслати</button>
+    </form>
+</section>
+{% endblock %}

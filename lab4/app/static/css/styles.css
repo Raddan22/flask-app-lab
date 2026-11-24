@@ -1,0 +1,119 @@
+/* =========================================
+   1. ЗМІННІ ДЛЯ СВІТЛОЇ ТЕМИ
+   ========================================= */
+   .light-theme {
+    --bg: #f4f7f6;
+    --text: #2c3e50;
+    --card-bg: #ffffff;
+    --border: #ced4da;
+    --input-bg: #ffffff;
+    
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* =========================================
+   2. ЗМІННІ ДЛЯ ТЕМНОЇ ТЕМИ
+   ========================================= */
+.dark-theme {
+    --bg: #121212 !important;
+    --text: #ffffff !important;
+    --card-bg: #1e1e1e !important;
+    --border: #555555 !important;
+    --input-bg: #2b2b2b !important;
+    
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* =========================================
+   3. ЗАСТОСУВАННЯ (тільки всередині .light-theme або .dark-theme)
+   ========================================= */
+.light-theme .profile-card, 
+.light-theme .card,
+.dark-theme .profile-card,
+.dark-theme .card {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Шапка профілю */
+.profile-header {
+    background: linear-gradient(135deg, #0d6efd, #0dcaf0) !important;
+    color: #ffffff !important;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+/* Поля вводу */
+.light-theme .form-control,
+.dark-theme .form-control {
+    background-color: var(--input-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+.light-theme .form-control::placeholder {
+    color: #888888 !important;
+}
+.dark-theme .form-control::placeholder {
+    color: #aaaaaa !important;
+}
+
+/* Текст всередині обгортки */
+.light-theme h1, .light-theme h2, .light-theme h3, .light-theme h4, .light-theme h5, .light-theme h6, .light-theme p, .light-theme label, .light-theme td, .light-theme th, .light-theme span,
+.dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6, .dark-theme p, .dark-theme label, .dark-theme td, .dark-theme th, .dark-theme span {
+    color: var(--text) !important;
+}
+
+/* Таблиця */
+.light-theme .table, .dark-theme .table {
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+.dark-theme .table-hover tbody tr:hover {
+    color: #ffffff !important;
+    background-color: #2c2c2c !important;
+}
+
+.dark-theme .table-responsive {
+    background-color: transparent !important;
+}
+
+/* Робимо фон таблиці темним, а текст білим */
+.dark-theme .table {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border-color: #444 !important;
+}
+
+/* Робимо фон заголовків таблиці (Ключ, Значення, Дія) темнішим */
+.dark-theme .table thead th {
+    background-color: #2b2b2b !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid #555 !important;
+}
+
+/* Робимо фон рядків темним */
+.dark-theme .table tbody td {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border-color: #444 !important;
+}
+
+/* Ефект при наведенні мишки на рядок */
+.dark-theme .table-hover tbody tr:hover td {
+    background-color: #2c2c2c !important;
+    color: #ffffff !important;
+}
